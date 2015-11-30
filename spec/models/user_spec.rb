@@ -53,4 +53,34 @@ RSpec.describe User, type: :model do
       expect(Stock.count).to eq(0)
     end
   end
+
+  describe "follow" do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+
+    it "can follow other user" do
+      user.follow_user(other_user)
+      expect(user.following.count).to eq(1)
+      expect(user.follower.count).to eq(0)
+      expect(other_user.follower.count).to eq(1)
+      expect(other_user.following.count).to eq(0)
+    end
+
+    it "should be invalid if follow duplicate user" do
+      user.follow_user(other_user)
+      user.follow_user(other_user)
+      expect(user).not_to be_valid
+      expect(user.following.count).to eq(1)
+    end
+
+    it "can unfollow followed user" do
+      user.follow_user(other_user)
+      expect(user.following.count).to eq(1)
+      expect(other_user.follower.count).to eq(1)
+      user.unfollow_user(other_user)
+      expect(user.following.count).to eq(0)
+      expect(other_user.follower.count).to eq(0)
+    end
+  end
+
 end
