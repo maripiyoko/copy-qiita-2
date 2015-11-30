@@ -5,6 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :items
+  has_many :stocks, dependent: :destroy
+  has_many :stock_items, through: :stocks, source: :item
 
   validates_presence_of :name
+
+  def stock(item)
+    self.stocks.build(item: item)
+  end
+
+  def unstock(item)
+    self.stocks.find_by!(item: item).destroy
+  end
 end
