@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130014642) do
+ActiveRecord::Schema.define(version: 20151130025314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "following_tags", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "following_tags", ["tag_id", "user_id"], name: "index_following_tags_on_tag_id_and_user_id", unique: true, using: :btree
+  add_index "following_tags", ["tag_id"], name: "index_following_tags_on_tag_id", using: :btree
+  add_index "following_tags", ["user_id"], name: "index_following_tags_on_user_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "title",      default: "", null: false
@@ -88,6 +99,8 @@ ActiveRecord::Schema.define(version: 20151130014642) do
   add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "following_tags", "tags"
+  add_foreign_key "following_tags", "users"
   add_foreign_key "items", "users"
   add_foreign_key "stocks", "items"
   add_foreign_key "stocks", "users"
