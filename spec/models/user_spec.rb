@@ -54,7 +54,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "follow" do
+  describe "follow user" do
     let(:user) { create(:user) }
     let(:other_user) { create(:user) }
 
@@ -80,6 +80,34 @@ RSpec.describe User, type: :model do
       user.unfollow_user(other_user)
       expect(user.following.count).to eq(0)
       expect(other_user.follower.count).to eq(0)
+    end
+  end
+
+  describe "follow tag" do
+    let(:user) { create(:user) }
+    let(:item) { create(:item) }
+    let(:tag) { create(:tag) }
+
+    it "can follow tag" do
+      user.follow_tag(tag)
+      expect(user.following_tags.count).to eq(1)
+    end
+
+    it "can unfollow tag" do
+      user.follow_tag(tag)
+      expect(user.following_tags.count).to eq(1)
+      user.unfollow_tag(tag)
+      expect(user.following_tags.count).to eq(0)
+    end
+
+    it "can get item via tag" do
+      tag_name = 'RSpec'
+      item.tag_list.add(tag_name)
+      item.save
+      user.follow_tag(item.tags.first)
+      expect(user.following_tags.count).to eq 1
+      following_tag1 = user.following_tags.first
+      expect(following_tag1.items.count).to eq 1
     end
   end
 

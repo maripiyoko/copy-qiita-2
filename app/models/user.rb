@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
            foreign_key: "followed_id", dependent: :destroy
   has_many :follower, through: :passive_relationships
 
+  has_many :following_tags, dependent: :destroy
+
   validates_presence_of :name
 
   def stock(item)
@@ -33,4 +35,11 @@ class User < ActiveRecord::Base
     active_relationships.find_by!(followed_id: other_user.id).destroy
   end
 
+  def follow_tag(tag)
+    following_tags.create(tag_id: tag.id)
+  end
+
+  def unfollow_tag(tag)
+    following_tags.find_by!(tag_id: tag.id).destroy
+  end
 end
