@@ -53,7 +53,8 @@ RSpec.configure do |config|
   # devise
   config.include Devise::TestHelpers, type: :controller
 
-
+  # FactoryGirl
+  config.include FactoryGirl::Syntax::Methods
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
