@@ -2,9 +2,17 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title CopyQiita2
+    %title CopyQiita
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    = render 'layouts/header'
+
+    .container-fluid
+      .row
+        .col-sm-12
+        = render 'layouts/message'
+      .row
+        .col-sm-12
+        = yield
