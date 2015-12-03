@@ -111,4 +111,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+
+  describe "find by name" do
+    let(:user) { create(:user, { name: "TestUser" }) }
+
+    it "should use name as param id" do
+      expect(user.to_param).to eq("TestUser")
+    end
+  end
 end

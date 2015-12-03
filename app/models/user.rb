@@ -42,4 +42,6 @@ class User < ActiveRecord::Base
   def unfollow_tag(tag)
     following_tags.find_by!(tag_id: tag.id).destroy
   end
+
+  include FindByName
 end
