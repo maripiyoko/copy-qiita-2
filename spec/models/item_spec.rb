@@ -14,9 +14,8 @@ RSpec.describe Item, type: :model do
     expect(build(:item, { user: nil })).not_to be_valid
   end
 
-
   describe "tags" do
-    let(:item) { build(:item) }
+    let(:item) { create(:item) }
     it "can be added" do
       item.tag_list.add("RSpec")
       expect(item.tag_list.count).to eq(1)

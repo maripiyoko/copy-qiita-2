@@ -17,6 +17,12 @@ RSpec.describe ItemsController, type: :controller do
       get :index, user_id: login_user
       expect(assigns(:items)).to include item
     end
+
+    it "should respond to json" do
+      get :index, user_id: login_user, format: :json
+      expect(response).to have_http_status(:success)
+      expect(response.content_type).to eq("application/json")
+    end
   end
 
 end
