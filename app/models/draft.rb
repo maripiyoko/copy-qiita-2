@@ -1,6 +1,7 @@
 class Draft < ActiveRecord::Base
   belongs_to :user
   belongs_to :item
+  acts_as_taggable
 
   validates_presence_of :user_id, :title
   validate :check_item_user, if: Proc.new { self.item.present? }
