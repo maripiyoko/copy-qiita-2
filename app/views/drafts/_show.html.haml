@@ -1,0 +1,12 @@
+.row.col-sm-12
+  = link_to '編集する', edit_draft_path(@draft), class: "btn btn-default"
+  = link_to @draft, class: "btn btn-danger pull-right", method: :delete do
+    %i.glyphicon.glyphicon-trash
+    %span 削除する
+
+  .row
+    .co-sm-12
+      %h2.draft-title= @draft.title
+  .row
+    .col-sm-6
+      = simple_format @draft.content

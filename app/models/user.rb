@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :items
+  has_many :drafts
   has_many :stocks, dependent: :destroy
   has_many :stock_items, through: :stocks, source: :item
 

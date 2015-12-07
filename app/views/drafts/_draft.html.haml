@@ -1,3 +1,4 @@
 .list-group-item
-  %h4= draft.title
-  = draft.updated_at
+  = link_to draft, remote: true do
+    %h4= draft.title
+    = draft.updated_at

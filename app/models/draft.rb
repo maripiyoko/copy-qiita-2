@@ -7,6 +7,7 @@ class Draft < ActiveRecord::Base
 
   before_save :update_item, if: Proc.new { self.item.present? }
 
+  scope :recent, -> { order(updated_at: :desc) }
   scope :unpublished, -> { where(item: nil) }
   scope :published, -> { where.not(item: nil) }
 
