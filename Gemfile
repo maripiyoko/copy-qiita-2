@@ -53,6 +53,8 @@ gem 'font-awesome-rails'
 gem 'twitter-bootswatch-rails'
 gem 'twitter-bootswatch-rails-helpers'
 
+gem 'jquery-ui-rails'
+
 # turbolinks support
 gem 'jquery-turbolinks'
 
