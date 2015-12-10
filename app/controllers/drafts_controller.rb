@@ -2,6 +2,7 @@ class DraftsController < ApplicationController
   before_action :set_draft_item, only: [ :show, :edit, :update, :destroy ]
 
   def index
+    @current_id ||= params[:current_id]
     @drafts = current_user.items.drafts
   end
 
@@ -23,7 +24,7 @@ class DraftsController < ApplicationController
   def create
     @draft = current_user.items.new(draft_item_params)
     if @draft.save
-      redirect_to drafts_path, notice: '下書きを保存しました。'
+      redirect_to drafts_path(current_id: @draft.id), notice: '下書きを保存しました。'
     else
       @url = drafts_path
       render :new, alert: '下書きが保存できませんでした。'
@@ -32,7 +33,7 @@ class DraftsController < ApplicationController
 
   def update
     if @draft.update(draft_item_params)
-      redirect_to drafts_path, notice: '下書きを更新しました。'
+      redirect_to drafts_path(current_id: @draft.id), notice: '下書きを更新しました。'
     else
       @url = draft_path(@draft)
       render :edit, alert: '下書きが更新できませんでした。'
