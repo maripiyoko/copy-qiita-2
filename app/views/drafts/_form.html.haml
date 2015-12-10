@@ -8,4 +8,5 @@
       #markdown-preview.preview-content.col-sm-6
         = markdown(@draft.content)
     .row.col-sm-12
-      = f.button :submit
+      = f.button :submit, class: "btn btn-success"
+      = f.button :submit, '公開する', name: 'publish', class: "btn btn-primary pull-right"
