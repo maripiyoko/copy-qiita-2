@@ -1,0 +1,15 @@
+#draft-show-header.row.col-sm-12
+  = link_to '編集する', edit_draft_path(@draft), class: "btn btn-default"
+  = link_to draft_path(@draft), class: "btn btn-danger pull-right", method: :delete do
+    %i.glyphicon.glyphicon-trash
+    %span 削除する
+
+  .row
+    .co-sm-12
+      .draft-title
+        .draft-header= @draft.title
+        .draft-tags
+          - @draft.tag_list.each do |tag|
+            .tag.label.label-info= tag
+    .col-sm-12
+      = simple_format @draft.content

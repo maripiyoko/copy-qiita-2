@@ -1,0 +1,12 @@
+.row
+  #draftsSidebar.col-sm-3
+    .panel.panel-default
+      .panel-heading
+        .row
+          %h4.col-sm-9 下書き一覧
+          = link_to new_draft_path, class: "btn btn-success" do
+            %i.glyphicon.glyphicon-pencil
+      .list-groups
+        = render partial: 'draft', collection: @drafts
+
+  #draftsPreview.col-sm-9
