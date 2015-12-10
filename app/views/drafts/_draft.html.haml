@@ -1,4 +1,4 @@
-= link_to draft_path(draft), remote: true do
+= link_to draft_path(draft), class: "draft_item", id: "draft_item_#{draft.id}", remote: true do
   .list-group-item
     %h4= draft.title
     = draft.updated_at

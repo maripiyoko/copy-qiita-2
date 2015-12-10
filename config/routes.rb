@@ -3,8 +3,11 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :drafts
+  get 'markdown/preview'
 
-  resources :users, only: [ :show ], path: '', controller: :profile do
+  resource :user, only: [ :show ], controller: :profile
+
+  resources :users, only: [], path: '' do
     resources :items, only: [ :index ] do
       resource :stock, only: [ :create, :update, :destroy ]
       resource :comment, only: [ :create, :update, :destroy ]
