@@ -1,12 +1,12 @@
 class DraftsController < ApplicationController
-  before_action :set_draft, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_draft_item, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @drafts = current_user.drafts.recent
+    @drafts = current_user.items.drafts
   end
 
   def new
-    @draft = current_user.drafts.new
+    @draft = current_user.items.new
   end
 
   def show
@@ -16,7 +16,7 @@ class DraftsController < ApplicationController
   end
 
   def create
-    @draft = current_user.drafts.new(draft_params)
+    @draft = current_user.items.new(draft_item_params)
     if @draft.save
       redirect_to drafts_path, notice: '下書きを保存しました。'
     else
@@ -25,7 +25,7 @@ class DraftsController < ApplicationController
   end
 
   def update
-    if @draft.update(draft_params)
+    if @draft.update(draft_item_params)
       redirect_to drafts_path, notice: '下書きを更新しました。'
     else
       render :edit, alert: '下書きが更新できませんでした。'
@@ -39,11 +39,11 @@ class DraftsController < ApplicationController
 
   private
 
-    def set_draft
-      @draft = current_user.drafts.find(params[:id])
+    def set_draft_item
+      @draft = current_user.items.drafts.find(params[:id])
     end
   
-    def draft_params
-      params.require(:draft).permit([ :title, :content, :tag_list ])
+    def draft_item_params
+      params.require(:item).permit([ :title, :content, :tag_list ])
     end
 end
