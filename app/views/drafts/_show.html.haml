@@ -12,4 +12,4 @@
           - @draft.tag_list.each do |tag|
             .tag.label.label-info= tag
     .col-sm-12
-      = simple_format @draft.content
+      = markdown(@draft.content)

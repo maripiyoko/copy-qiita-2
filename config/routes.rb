@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :drafts
+  get 'markdown/preview'
 
   resource :user, only: [ :show ], controller: :profile
 
