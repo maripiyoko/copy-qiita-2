@@ -1,4 +1,4 @@
-= simple_form_for @draft, url: drafts_path do |f|
+= simple_form_for @draft, url: @url do |f|
   = f.input :title, placeholder: 'タイトル', label: false, autofocus: true
   .form-group
     = text_field_tag 'item[tag_list]', @draft.tag_list.join(','), { class: "form-control", data: { role: "tagsinput" } }

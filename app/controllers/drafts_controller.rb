@@ -6,7 +6,12 @@ class DraftsController < ApplicationController
   end
 
   def new
+    @url = drafts_path
     @draft = current_user.items.new
+  end
+
+  def edit
+    @url = draft_path(@draft)
   end
 
   def show
@@ -20,6 +25,7 @@ class DraftsController < ApplicationController
     if @draft.save
       redirect_to drafts_path, notice: '下書きを保存しました。'
     else
+      @url = drafts_path
       render :new, alert: '下書きが保存できませんでした。'
     end
   end
@@ -28,6 +34,7 @@ class DraftsController < ApplicationController
     if @draft.update(draft_item_params)
       redirect_to drafts_path, notice: '下書きを更新しました。'
     else
+      @url = draft_path(@draft)
       render :edit, alert: '下書きが更新できませんでした。'
     end
   end
