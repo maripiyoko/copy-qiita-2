@@ -7,6 +7,6 @@
           = link_to new_draft_path, class: "btn btn-success" do
             %i.glyphicon.glyphicon-pencil
       .list-groups
-        = render @drafts
+        = render partial: 'draft', collection: @drafts
 
   #draftsPreview.col-sm-9
