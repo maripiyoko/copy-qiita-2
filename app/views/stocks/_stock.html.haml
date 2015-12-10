@@ -1,0 +1,6 @@
+%tr
+  %td
+    .item-note
+      = link_to stock.user.name, stock.user
+      %span.date= " が#{stock.created_at}に投稿"
+    .title= link_to stock.title, [ stock.user, stock ]
