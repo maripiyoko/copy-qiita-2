@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   resources :drafts
   get 'markdown/preview'
 
-  resource :user, only: [ :show ], controller: :profile
-
-  resources :users, only: [], path: '' do
+  resources :users, only: [ :show ], path: '', controller: :profile do
     resources :items, only: [ :index, :show ] do
       resource :stock, only: [ :create, :update, :destroy ]
       resource :comment, only: [ :create, :update, :destroy ]
