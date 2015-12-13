@@ -1,3 +1,6 @@
-%h1= @item.title
+.item_header
+  .item_header__title= @item.title
+  .item_header__tags= @item.tag_list
+  .item_header__commands 編集ボタン
 
 .main_content= markdown(@item.content)
