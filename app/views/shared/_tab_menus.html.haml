@@ -1,0 +1,7 @@
+%ul.nav.nav-tabs
+  %li.active{ role: "presentation" }
+    = link_to '最近の投稿', user_items_path(current_user), remote: true
+  %li{ role: "presentation" }
+    = link_to 'ストックした投稿', user_stocks_path(current_user), remote: true
+  %li{ role: "presentation" }
+    = link_to 'コメント', user_comments_path(current_user), remote: true

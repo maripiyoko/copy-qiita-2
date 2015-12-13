@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resource :user, only: [ :show ], controller: :profile
 
   resources :users, only: [], path: '' do
-    resources :items, only: [ :index ] do
+    resources :items, only: [ :index, :show ] do
       resource :stock, only: [ :create, :update, :destroy ]
       resource :comment, only: [ :create, :update, :destroy ]
     end
