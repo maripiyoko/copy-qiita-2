@@ -129,4 +129,21 @@ RSpec.describe User, type: :model do
       expect(user.to_param).to eq("TestUser")
     end
   end
+
+  describe "contribution" do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+
+    it "should count up all items stocks of the user" do
+      10.times do
+        item = create(:item, { user: user })
+        other_user.stock(item)
+      end
+      expect(user.contribution).to eq 10
+      user.items.each do |item|
+        user.stock(item)
+      end
+      expect(user.contribution).to eq 20
+    end
+  end
 end

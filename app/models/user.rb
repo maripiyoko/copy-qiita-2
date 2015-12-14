@@ -47,5 +47,9 @@ class User < ActiveRecord::Base
     following_tags.find_by!(tag_id: tag.id).destroy
   end
 
+  def contribution
+    items.inject(0){ |sum, item| sum + item.stocks.count }
+  end
+
   include FindByName
 end

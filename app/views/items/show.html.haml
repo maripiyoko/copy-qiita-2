@@ -13,3 +13,6 @@
   .col-sm-9
     .main_content= markdown(@item.content)
   .col-sm-3
+    #user-side-info
+      .user__name= @item.user.name
+      .user__contribution="#{@item.user.contribution} Contribution"
