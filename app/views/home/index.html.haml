@@ -1,7 +1,7 @@
-- if user_signed_in?
-  %h1 Feeds
-- else
-  .row
+.col-sm-12
+  - if user_signed_in?
+    %h1 Feeds
+  - else
     .col-sm-6
       .well.well-lg
         Copy Qiita 2

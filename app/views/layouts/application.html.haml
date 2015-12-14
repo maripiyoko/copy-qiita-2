@@ -7,10 +7,10 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render 'layouts/header'
-
     .container-fluid
-      .row.col-sm-12
+      = render 'layouts/header'
+
+      .col-sm-12
         = render 'layouts/message'
-      .row.col-sm-12
+      .row
         = yield
