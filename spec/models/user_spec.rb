@@ -52,6 +52,16 @@ RSpec.describe User, type: :model do
       user.destroy
       expect(Stock.count).to eq(0)
     end
+
+    it "can check if user already stock the item" do
+      user.stock(item)
+      expect(user.stocked?(item)).to be_truthy
+    end
+
+    it "should respond false if user not stock the item yet" do
+      p user.id
+      expect(user.stocked?(item)).to be_falsey
+    end
   end
 
   describe "follow user" do

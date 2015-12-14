@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     stocks.find_by!(item: item).destroy
   end
 
+  def stocked?(item)
+    stocks.find_by(item: item).present?
+  end
+
   def follow_user(other_user)
     active_relationships.create(followed_id: other_user.id)
   end

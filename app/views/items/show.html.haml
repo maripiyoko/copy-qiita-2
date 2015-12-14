@@ -6,18 +6,8 @@
       %li= "#{@item.user.name}が"
       %li= "#{@item.created_at} に投稿"
 
-  .col-sm-3
-    %ul.list-inline.row
-      %li.col-sm-6.item_header__summary.separator
-        .item_header__summary_count= "#{0}"
-        .r ストック
-      %li.col-sm-6.item_header__summary
-        .item_header__summary_count= "#{0}"
-        .r コメント
-    .col-sm
-      = link_to '#', remote: true, class:"btn btn-block btn-default item_header__stock" do
-        %i.glyphicon.glyphicon-folder-close
-        %span ストック
+  #js-stock-updating-area.col-sm-3
+    = render 'stocks/header_stock_info'
 
 .row
   .col-sm-9

@@ -7,10 +7,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [ :show ], path: '', controller: :profile do
     resources :items, only: [ :index, :show ] do
-      resource :stock, only: [ :create, :update, :destroy ]
+      resource :stock, only: [ :create, :destroy ]
       resource :comment, only: [ :create, :update, :destroy ]
     end
     resources :stocks, only: [ :index ]
     resources :comments, only: [ :index ]
   end
+
 end

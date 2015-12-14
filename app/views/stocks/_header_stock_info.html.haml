@@ -1,0 +1,18 @@
+%ul.list-inline.row
+  %li.col-sm-6.item_header__summary.separator
+    .item_header__summary_count
+      %span#item_stock_count= "#{@item.stocks.count}"
+    .r ストック
+  %li.col-sm-6.item_header__summary
+    .item_header__summary_count= "#{0}"
+    .r コメント
+
+#js-stock-action
+  - if current_user.stocked?(@item)
+    = link_to user_item_stock_path(@item.user, @item), method: :delete, remote: true, class: "btn btn-block btn-warning" do
+      %i.glyphicon.glyphicon-folder-open
+      %span ストック解除
+  - else
+    = link_to user_item_stock_path(@item.user, @item), method: :post, remote: true, class:"btn btn-block btn-default item_header__stock" do
+      %i.glyphicon.glyphicon-folder-close
+      %span ストック
