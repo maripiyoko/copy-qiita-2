@@ -1,0 +1,5 @@
+%ul.nav.nav-tabs
+  %li.js-my-page-tab{ role: "presentation" }
+    = link_to 'フィード', '#', remote: true, id: "my-page-tab_feeds"
+  %li.js-my-page-tab.active{ role: "presentation" }
+    = link_to '全ての投稿', items_path, remote: true, id: "my-page-tab_all"

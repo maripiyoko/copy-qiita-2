@@ -1,6 +1,18 @@
 .col-sm-12
   - if user_signed_in?
-    %h1 Feeds
+    %h1 プログラミング知識を共有しよう。
+
+    = link_to 'ノウハウ・Tipsを投稿する', new_draft_path, class: "btn btn-success"
+
+    .row.col-sm-12
+      .col-sm-8
+        = render 'shared/home_tabs'
+        .tab-content
+          %table.table
+            %tbody#tab_main
+
+    = hidden_field_tag "active_tab", @active_tab
+
   - else
     .col-sm-6
       .well.well-lg
