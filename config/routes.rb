@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :drafts
   get 'markdown/preview'
+  get 'items', controller: :home, action: :items
+  get 'feeds', controller: :home, action: :feeds
 
   resources :users, only: [ :show ], path: '', controller: :profile do
     resources :items, only: [ :index, :show ] do

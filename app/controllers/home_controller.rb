@@ -11,4 +11,12 @@ class HomeController < ApplicationController
       format.js
     end
   end
+
+  def feeds
+    # FIXME
+    @items = Item.published.recent.page params[:page]
+    respond_to do |format|
+      format.js { render :items }
+    end
+  end
 end
