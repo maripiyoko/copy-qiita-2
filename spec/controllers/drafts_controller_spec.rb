@@ -63,7 +63,7 @@ RSpec.describe DraftsController, type: :controller do
 
       it "should respond validation error messages" do
         post :create, item: attributes_for(:item, title: '')
-        expect(response.body).to have_content "error message"
+        expect(response).to render_template :new
       end
 
     end
