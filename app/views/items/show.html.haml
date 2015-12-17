@@ -1,0 +1,18 @@
+.item_header
+  .col-sm-9
+    .item_header__title= @item.title
+    .item_header__tags= @item.tag_list
+    %ul.item_header__info.list-unstyled.list-inline
+      %li= "#{@item.user.name}が"
+      %li= "#{@item.created_at} に投稿"
+
+  #js-stock-updating-area.col-sm-3
+    = render 'stocks/header_stock_info'
+
+.row
+  .col-sm-9
+    .main_content= markdown(@item.content)
+  .col-sm-3
+    #user-side-info
+      .user__name= @item.user.name
+      .user__contribution="#{@item.user.contribution} Contribution"

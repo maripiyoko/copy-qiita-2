@@ -4,15 +4,16 @@ Rails.application.routes.draw do
 
   resources :drafts
   get 'markdown/preview'
+  get 'items', controller: :home, action: :items
+  get 'feeds', controller: :home, action: :feeds
 
-  resource :user, only: [ :show ], controller: :profile
-
-  resources :users, only: [], path: '' do
-    resources :items, only: [ :index ] do
-      resource :stock, only: [ :create, :update, :destroy ]
+  resources :users, only: [ :show ], path: '', controller: :profile do
+    resources :items, only: [ :index, :show ] do
+      resource :stock, only: [ :create, :destroy ]
       resource :comment, only: [ :create, :update, :destroy ]
     end
     resources :stocks, only: [ :index ]
     resources :comments, only: [ :index ]
   end
+
 end

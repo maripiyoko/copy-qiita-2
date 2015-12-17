@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     stocks.find_by!(item: item).destroy
   end
 
+  def stocked?(item)
+    stocks.find_by(item: item).present?
+  end
+
   def follow_user(other_user)
     active_relationships.create(followed_id: other_user.id)
   end
@@ -41,6 +45,10 @@ class User < ActiveRecord::Base
 
   def unfollow_tag(tag)
     following_tags.find_by!(tag_id: tag.id).destroy
+  end
+
+  def contribution
+    items.inject(0){ |sum, item| sum + item.stocks.count }
   end
 
   include FindByName

@@ -1,15 +1,14 @@
-.row.col-sm-12
-  #draftsSidebar.col-sm-3
-    .panel.panel-default
-      .panel-heading
-        .row
-          %h4.col-sm-9 下書き一覧
-          = link_to new_draft_path, class: "btn btn-success" do
-            %i.glyphicon.glyphicon-pencil
-      .list-groups
-        = render partial: 'draft', collection: @drafts
+#draftsSidebar.col-sm-3
+  .panel.panel-default
+    .panel-heading
+      .row
+        %h4.col-sm-9 下書き一覧
+        = link_to new_draft_path, class: "btn btn-success" do
+          %i.glyphicon.glyphicon-pencil
+    .list-groups
+      = render partial: 'draft', collection: @drafts
 
-  #draftsPreview.col-sm-9
+#draftsPreview.col-sm-9
 
 
 = hidden_field_tag "current_id", @current_id

@@ -1,1 +1,14 @@
 %h1= "#{current_user.name} のマイページ"
+
+.row.col-sm-12
+  .col-sm-8
+    = render 'shared/tab_menus'
+    .tab-content
+      %table.table
+        %tbody#tab_main
+
+  .col-sm-4
+    .panel
+
+
+= hidden_field_tag "active_tab", @active_tab

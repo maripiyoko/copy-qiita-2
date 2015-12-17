@@ -52,6 +52,16 @@ RSpec.describe User, type: :model do
       user.destroy
       expect(Stock.count).to eq(0)
     end
+
+    it "can check if user already stock the item" do
+      user.stock(item)
+      expect(user.stocked?(item)).to be_truthy
+    end
+
+    it "should respond false if user not stock the item yet" do
+      p user.id
+      expect(user.stocked?(item)).to be_falsey
+    end
   end
 
   describe "follow user" do
@@ -117,6 +127,23 @@ RSpec.describe User, type: :model do
 
     it "should use name as param id" do
       expect(user.to_param).to eq("TestUser")
+    end
+  end
+
+  describe "contribution" do
+    let(:user) { create(:user) }
+    let(:other_user) { create(:user) }
+
+    it "should count up all items stocks of the user" do
+      10.times do
+        item = create(:item, { user: user })
+        other_user.stock(item)
+      end
+      expect(user.contribution).to eq 10
+      user.items.each do |item|
+        user.stock(item)
+      end
+      expect(user.contribution).to eq 20
     end
   end
 end

@@ -6,7 +6,11 @@ RSpec.describe ItemsController, type: :controller do
   let!(:item) { create(:item, { user: login_user })}
 
   describe "GET #index" do
-    before { sign_in login_user }
+    before {
+      sign_in login_user
+      item.publish
+      item.save
+    }
 
     it "returns http success" do
       get :index, user_id: login_user
